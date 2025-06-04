@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIDAN Ayman - Download CV</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+      --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-glow: 0 0 20px rgba(255, 255, 255, 0.5);
+      --neon-blue: #00f5ff;
+      --neon-purple: #bf00ff;
+      --neon-pink: #ff006e;
+      --neon-green: #39ff14;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--dark-gradient);
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(45deg, #0c0c0c, #1a1a1a, #2d1b4e, #1a1a1a, #0f3460);
+      background-size: 500% 500%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 50%; }
+      50% { background-position: 50% 100%; }
+      75% { background-position: 50% 0%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating geometric shapes */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      opacity: 0.1;
+      animation: floatShape 15s infinite linear;
+    }
+
+    .shape-circle {
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--neon-blue);
+      border-radius: 50%;
+      top: 120%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape-square {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--neon-purple);
+      top: 120%;
+      left: 60%;
+      animation-delay: -5s;
+      transform: rotate(45deg);
+    }
+
+    .shape-triangle {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 35px solid var(--neon-pink);
+      top: 120%;
+      left: 80%;
+      animation-delay: -10s;
+    }
+
+    @keyframes floatShape {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Navbar */
+    .navbar-blur {
+      backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.3) !important;
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-shadow: var(--text-glow);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--tertiary-gradient);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--neon-blue) !important;
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    /* Hero Section */
+    .download-hero {
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: var(--tertiary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: titlePulse 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titlePulse {
+      0% { 
+        filter: drop-shadow(0 0 20px rgba(79, 172, 254, 0.5));
+        transform: scale(1);
+      }
+      100% { 
+        filter: drop-shadow(0 0 40px rgba(79, 172, 254, 0.8));
+        transform: scale(1.02);
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* CV Display Section */
+    .cv-display-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .cv-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cv-preview-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .cv-preview-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: var(--tertiary-gradient);
+      border-radius: 32px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cv-preview-card:hover::before {
+      opacity: 1;
+    }
+
+    .cv-preview-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.8s ease;
+    }
+
+    .cv-preview-card:hover::after {
+      left: 100%;
+    }
+
+    .cv-icon-container {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 2rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cv-icon-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-gradient);
+      border-radius: 50%;
+      animation: iconRotate 10s linear infinite;
+      opacity: 0.2;
+    }
+
+    .cv-icon {
+      font-size: 4rem;
+      color: var(--neon-blue);
+      z-index: 2;
+      animation: iconFloat 3s ease-in-out infinite alternate;
+      filter: drop-shadow(0 0 20px var(--neon-blue));
+    }
+
+    @keyframes iconRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes iconFloat {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-modern {
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-preview {
+      background: var(--primary-gradient);
+      color: white;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-download {
+      background: var(--success-gradient);
+      color: white;
+      box-shadow: 0 10px 30px rgba(17, 153, 142, 0.3);
+    }
+
+    .btn-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-modern:hover::before {
+      left: 100%;
+    }
+
+    .btn-modern:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-modern:active {
+      transform: translateY(-2px) scale(1.02);
+    }
+
+    .btn-modern i {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .btn-modern:hover i {
+      transform: scale(1.2);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      min-width: 150px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(79, 172, 254, 0.2);
+      border-color: var(--neon-blue);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--tertiary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Success Message */
+    .success-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: var(--success-gradient);
+      color: white;
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      z-index: 9999;
+      box-shadow: 0 20px 60px rgba(17, 153, 142, 0.4);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(20px);
+    }
+
+    .success-message.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .success-message i {
+      margin-right: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Modal Styles */
+    .modal-content {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .modal-title {
+      background: var(--tertiary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .btn-close-white {
+      filter: brightness(0) invert(1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn-modern {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .stats-container {
+        gap: 1.5rem;
+      }
+      
+      .cv-preview-card {
+        padding: 2rem;
+        margin: 0 1rem;
+      }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--tertiary-gradient);
+      border-radius: 10px;
+    }
+
+    /* Additional Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    /* Particle Trail Effect */
+    .particle-trail {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--neon-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: particleFade 1s ease-out forwards;
+    }
+
+    @keyframes particleFade {
+      0% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+  
+  <!-- Floating Shapes -->
+  <div class="floating-shapes">
+    <div class="shape shape-circle"></div>
+    <div class="shape shape-square"></div>
+    <div class="shape shape-triangle"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/Logo.png" alt="Logo" width="70" height="70" class="me-2">
+        <span>My Portfolio</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link active" href="download.html">Download CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="download-hero">
+    <div class="container">
+      <h1 class="hero-title" data-aos="zoom-in">Download My CV</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+        See my professional journey and skills laid out in a well-crafted resume. Preview or download my CV directly as a PDF.
+      </p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-container" data-aos="fade-up">
+        <div class="stat-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="stat-number">PDF</div>
+          <div class="stat-label">Format</div>
+        </div>
+        <div class="stat-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Languages</div>
+        </div>
+        <div class="stat-card" data-aos="flip-left" data-aos-delay="300">
+          <div class="stat-number">A4</div>
+          <div class="stat-label">Format</div>
+        </div>
+        <div class="stat-card" data-aos="flip-left" data-aos-delay="400">
+          <div class="stat-number">HD</div>
+          <div class="stat-label">Quality</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV Display Section -->
+  <section class="cv-display-section">
+    <div class="container">
+      <div class="cv-container" data-aos="fade-up" data-aos-delay="300">
+        <div class="cv-preview-card">
+          <div class="cv-icon-container">
+            <div class="cv-icon-bg"></div>
+            <i class="fas fa-file-pdf cv-icon"></i>
+          </div>
+          
+          <h3 style="margin-bottom: 2rem; font-weight: 700; text-align: center;">
+            Professional - MIDAN Ayman
+          </h3>
+          
+          <div class="action-buttons">
+            <button class="btn-modern btn-preview" data-bs-toggle="modal" data-bs-target="#cvModal" data-aos="fade-right" data-aos-delay="500">
+              <i class="fas fa-eye"></i>
+              Preview CV (ANG)
+            </button>
+            
+            <a href="images/CV.pdf" class="btn-modern btn-download" onclick="showSuccessMessage()" download rel="noopener" data-aos="fade-left" data-aos-delay="600">
+              <i class="fas fa-download"></i>
+              Download CV (ANG)
+            </a>
+          </div>
+          
+          <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border); text-align: center;">
+            <p style="opacity: 0.7; font-size: 0.9rem;">
+              <i class="fas fa-info-circle" style="margin-right: 0.5rem;"></i>
+              High-Quality PDF Format - Compatible with All Systems
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Message -->
+  <div id="successMsg" class="success-message">
+    <i class="fas fa-check-circle"></i>
+    CV downloaded successfully!
+  </div>
+
+  <!-- Modal Preview CV -->
+  <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="cvModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cvModalLabel">
+            <i class="fas fa-file-pdf" style="margin-right: 0.5rem;"></i>
+            CV Preview
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="images/CV.pdf" width="100%" height="500px" style="border: none; border-radius: 10px;"></iframe>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid var(--glass-border);">
+          <a href="images/CV.pdf" class="btn-modern btn-download" onclick="showSuccessMessage()" download rel="noopener">
+            <i class="fas fa-download"></i>
+            Download now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100
+    });
+
+    // Success message function
+    function showSuccessMessage() {
+      const msg = document.getElementById('successMsg');
+      msg.classList.add('show');
+      setTimeout(() => {
+        msg.classList.remove('show');
+      }, 3000);
+    }
+
+    // Create floating shapes animation
+    function createFloatingShapes() {
+      const shapesContainer = document.querySelector('.floating-shapes');
+      const shapeTypes = ['circle', 'square', 'triangle'];
+      const colors = ['var(--neon-blue)', 'var(--neon-purple)', 'var(--neon-pink)'];
+
+      setInterval(() => {
+        const shape = document.createElement('div');
+        const shapeType = shapeTypes[Math.floor(Math.random() * shapeTypes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        shape.className = `shape shape-${shapeType}`;
+        shape.style.left = Math.random() * 100 + '%';
+        shape.style.borderColor = color;
+        shape.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        
+        shapesContainer.appendChild(shape);
+        
+        // Remove shape after animation
+        setTimeout(() => {
+          shape.remove();
+        }, 20000);
+      }, 3000);
+    }
+
+    // Mouse trail effect
+    function createMouseTrail(e) {
+      const trail = document.createElement('div');
+      trail.className = 'particle-trail';
+      trail.style.left = e.clientX + 'px';
+      trail.style.top = e.clientY + 'px';
+      
+      document.body.appendChild(trail);
+      
+      setTimeout(() => {
+        trail.remove();
+      }, 1000);
+    }
+
+    // Button hover effects
+    function setupButtonEffects() {
+      const buttons = document.querySelectorAll('.btn-modern');
+      
+      buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          button.style.transform = 'translateY(-5px) scale(1.05)';
+        });
+        
+        button.addEventListener('mouseleave', () => {
+          button.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        button.addEventListener('click', (e) => {
+          // Create ripple effect
+          const ripple = document.createElement('span');
+          const rect = button.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+          
+          ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+          `;
+          
+          button.appendChild(ripple);
+          
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+    }
+
+    // Add ripple animation CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Stats counter animation
+    function animateStats() {
+      const statNumbers = document.querySelectorAll('.stat-number');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const element = entry.target;
+            const text = element.textContent;
+            
+            // Add counter animation for numeric values
+            if (!isNaN(text)) {
+              let count = 0;
+              const target = parseInt(text);
+              const increment = target / 50;
+              
+              const timer = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                  element.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  element.textContent = Math.floor(count);
+                }
+              }, 20);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      statNumbers.forEach(stat => observer.observe(stat));
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      createFloatingShapes();
+      setupButtonEffects();
+      animateStats();
+    });
+
+    // Add mouse trail on mouse move
+    document.addEventListener('mousemove', createMouseTrail);
+
+    // Parallax effect for CV card
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const cvCard = document.querySelector('.cv-preview-card');
+      
+      if (cvCard) {
+        const speed = scrolled * 0.1;
+        cvCard.style.transform = `translateY(${speed}px)`;
+      }
+    });
+
+    // Enhanced download tracking
+    document.querySelectorAll('a[download]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        console.log('CV Downloaded:', e.target.href);
+        
+        // Add download animation
+        const button = e.target;
+        button.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          button.style.transform = 'scale(1)';
+        }, 150);
+      });
+    });
+  </script>
+</body>
+</html>

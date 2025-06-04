@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIDAN Ayman - Skills</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --dark-gradient: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text-glow: 0 0 20px rgba(255, 255, 255, 0.5);
+      --neon-blue: #00f5ff;
+      --neon-purple: #bf00ff;
+      --neon-pink: #ff006e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--dark-gradient);
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(45deg, #0c0c0c, #1a1a1a, #2d1b4e, #1a1a1a);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--neon-blue);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+      box-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Navbar */
+    .navbar-blur {
+      backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.3) !important;
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      text-shadow: var(--text-glow);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--tertiary-gradient);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: var(--neon-blue) !important;
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    /* Main content */
+    .skills-hero {
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-title {
+      font-size: 4rem;
+      font-weight: 900;
+      background: var(--tertiary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      text-shadow: none;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 20px rgba(79, 172, 254, 0.5)); }
+      100% { filter: drop-shadow(0 0 40px rgba(79, 172, 254, 0.8)); }
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      opacity: 0.8;
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease 0.5s both;
+    }
+
+    /* Skills grid */
+    .skills-container {
+      padding: 80px 0;
+    }
+
+    .skill-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .skill-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(79, 172, 254, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: var(--neon-blue);
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover .skill-icon {
+      transform: scale(1.2) rotateY(180deg);
+      filter: drop-shadow(0 0 20px rgba(79, 172, 254, 0.8));
+    }
+
+    .skill-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .skill-card:hover .skill-title {
+      color: var(--neon-blue);
+      text-shadow: 0 0 10px var(--neon-blue);
+    }
+
+    .skill-description {
+      opacity: 0.8;
+      line-height: 1.6;
+      transition: all 0.3s ease;
+    }
+
+    .skill-card:hover .skill-description {
+      opacity: 1;
+    }
+
+    /* Progress bars */
+    .skill-progress {
+      margin-top: 1.5rem;
+    }
+
+    .progress-item {
+      margin-bottom: 1rem;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-custom {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--tertiary-gradient);
+      border-radius: 10px;
+      position: relative;
+      transition: width 2s ease;
+      box-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Specialty cards with unique gradients */
+    .skill-card-cybersecurity {
+      background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(0, 245, 255, 0.1) 100%);
+      border-color: var(--neon-pink);
+    }
+
+    .skill-card-programming {
+      background: linear-gradient(135deg, rgba(191, 0, 255, 0.1) 0%, rgba(79, 172, 254, 0.1) 100%);
+      border-color: var(--neon-purple);
+    }
+
+    .skill-card-web {
+      background: linear-gradient(135deg, rgba(79, 172, 254, 0.1) 0%, rgba(0, 242, 254, 0.1) 100%);
+      border-color: var(--neon-blue);
+    }
+
+    /* Floating action elements */
+    .floating-stats {
+      position: fixed;
+      top: 50%;
+      right: 30px;
+      transform: translateY(-50%);
+      z-index: 100;
+    }
+
+    .stat-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .stat-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--tertiary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .skill-card {
+        padding: 1.5rem;
+      }
+      
+      .floating-stats {
+        display: none;
+      }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--tertiary-gradient);
+      border-radius: 10px;
+    }
+
+    /* Additional animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+  
+  <!-- Floating Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/Logo.png" alt="Logo" width="70" height="70" class="me-2">
+        <span>My Portfolio</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="download.html">Download CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Hero Section -->
+<section class="skills-hero">
+  <div class="container">
+    <h1 class="hero-title" data-aos="zoom-in">SKILLS</h1>
+    <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+      Technical Excellence & Creative Innovation
+    </p>
+  </div>
+</section>
+
+<!-- Floating Stats -->
+<div class="floating-stats d-none d-lg-block">
+  <div class="stat-item" data-aos="fade-left" data-aos-delay="100">
+    <div class="stat-number">8+</div>
+    <div class="stat-label">Domains</div>
+  </div>
+  <div class="stat-item" data-aos="fade-left" data-aos-delay="200">
+    <div class="stat-number">25+</div>
+    <div class="stat-label">Technologies</div>
+  </div>
+  <div class="stat-item" data-aos="fade-left" data-aos-delay="300">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Passion</div>
+  </div>
+</div>
+
+<!-- Skills Section -->
+<section class="skills-container">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Cybersecurity & Networking -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="skill-card skill-card-cybersecurity">
+          <div class="skill-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3 class="skill-title">Cybersecurity & Networking</h3>
+          <p class="skill-description">
+            Advanced Linux system administration, infrastructure hardening, and protocol analysis.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Linux Security</span>
+                <span>95%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="95%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Network Analysis</span>
+                <span>90%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programming -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="skill-card skill-card-programming">
+          <div class="skill-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h3 class="skill-title">Programming Languages</h3>
+          <p class="skill-description">
+            Deep mastery of modern programming languages for software and data engineering.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Python</span>
+                <span>92%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="92%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Java</span>
+                <span>88%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="88%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web Development -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="skill-card skill-card-web">
+          <div class="skill-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3 class="skill-title">Web Development</h3>
+          <p class="skill-description">
+            Building modern web applications using both front-end and back-end technologies.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>JavaScript</span>
+                <span>87%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="87%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Flask</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Science -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="skill-title">Data Science & ML</h3>
+          <p class="skill-description">
+            Advanced statistical analysis and implementation of machine learning algorithms.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Machine Learning</span>
+                <span>89%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="89%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Statistics (R)</span>
+                <span>91%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="91%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Database Systems -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3 class="skill-title">Database Systems</h3>
+          <p class="skill-description">
+            Designing and optimizing relational and NoSQL databases for performance and scalability.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>MySQL</span>
+                <span>93%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="93%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>MongoDB</span>
+                <span>84%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="84%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DevOps & Tools -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="skill-title">DevOps & Tools</h3>
+          <p class="skill-description">
+            Mastery of modern development tools and workflow automation.
+          </p>
+          <div class="skill-progress">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Git/GitHub</span>
+                <span>94%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="94%"></div>
+              </div>
+            </div>
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>Bash Scripting</span>
+                <span>88%</span>
+              </div>
+              <div class="progress-bar-custom">
+                <div class="progress-fill" style="width: 0;" data-width="88%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: false,
+      offset: 100
+    });
+
+    // Create floating particles
+    function createParticles() {
+      const particles = document.getElementById('particles');
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Random position and animation delay
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 20 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        
+        // Random colors
+        const colors = ['#00f5ff', '#bf00ff', '#ff006e', '#4facfe'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.boxShadow = `0 0 10px ${particle.style.background}`;
+        
+        particles.appendChild(particle);
+      }
+    }
+
+    // Animate progress bars on scroll
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target;
+            const width = progressBar.getAttribute('data-width');
+            setTimeout(() => {
+              progressBar.style.width = width;
+            }, 300);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      progressBars.forEach(bar => observer.observe(bar));
+    }
+
+    // Skill card interactions
+    function setupSkillCards() {
+      const skillCards = document.querySelectorAll('.skill-card');
+      
+      skillCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-15px) rotateX(8deg) rotateY(5deg)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+        });
+
+        // Add click animation
+        card.addEventListener('click', () => {
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            card.style.transform = 'translateY(-15px) rotateX(8deg) rotateY(5deg)';
+          }, 150);
+        });
+      });
+    }
+
+    // Parallax effect for floating stats
+    function setupParallax() {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.floating-stats .stat-item');
+        
+        parallaxElements.forEach((element, index) => {
+          const speed = 0.5 + (index * 0.1);
+          element.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+      });
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      createParticles();
+      animateProgressBars();
+      setupSkillCards();
+      setupParallax();
+    });
+
+    // Smooth scrolling for navbar links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Custom cursor effect
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.querySelector('.custom-cursor');
+      if (cursor) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      }
+    });
+  </script>
+
+  <style>
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(79, 172, 254, 0.8) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease;
+    }
+  </style>
+  
+  <div class="custom-cursor"></div>
+</body>
+</html>
