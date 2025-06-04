@@ -1,0 +1,336 @@
+/* Navbar */
+.navbar-blur {
+  background-color: rgba(0, 0, 0, 0.2); /* transparent noir */
+  backdrop-filter: blur(10px); /* effet de flou */
+  -webkit-backdrop-filter: blur(10px); /* compatibilité Safari */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* fine bordure */
+  transition: background-color 0.3s ease;
+}
+
+
+.navbar-nav .nav-link {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  color: #ffffff;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffc107; /* couleur au survol */
+  transform: translateY(-2px); /* effet de montée */
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%; /* ligne qui s'étend */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0a0a0a;
+  overflow-x: hidden;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #007BFF 0%, transparent 60%);
+  animation: moveLight 10s linear infinite;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+@keyframes moveLight {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(25%, 25%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Pour s'assurer que le contenu reste au-dessus de l'effet */
+header, nav, main, footer {
+  position: relative;
+  z-index: 1;
+}
+
+
+.text-white {
+  color: #fff !important;
+}
+
+.social {
+  bottom: 30px;
+}
+/* Typing effect */
+#typing-text {
+  color: #ffffff; /* Couleur du texte en blanc */
+}
+
+/* Bouton */
+.btn-outline-light {
+  border-color: #deecf5;
+  color: #deecf5; /* Une couleur plus dynamique pour le bouton */
+}
+
+.btn-outline-light:hover {
+  background-color: #396583;
+  color: #fff; /* Inverser la couleur au survol */
+}
+
+.social a i {
+  color: #fff;
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.social a:hover i {
+  color: #3498db; /* Couleur de l'icône au survol */
+  text-shadow: 0 0 8px #3498db, 0 0 16px #3498db; /* Effet lumineux autour de l'icône */
+  transform: scale(1.1); /* Zoom léger au survol */
+}
+
+/* Autres ajustements */
+.text-welcome {
+  color: #547489; /* Pour un texte accentué avec une couleur bleue */
+}
+
+
+
+@media (max-width: 767px) {
+  .header .social i {
+    font-size: 30px;
+  }
+  .header .roles {
+    font-size: 18px !important;
+  }
+  .about-content {
+    flex-direction: column;
+  }
+  .stats .stat {
+    border-right: 0 !important;
+    margin-bottom: 40px;
+    border-bottom: var(--bs-dark) solid 1px;
+    padding-bottom: 20px;
+  }
+}
+
+/* Styles CSS pour la section header */
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* Ombre légère sous le texte pour une meilleure lisibilité */
+.header h1, .header p {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.btn-about {
+  background-color: #1ba7d5;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  animation: pulse 2s infinite;
+}
+
+.btn-about:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+
+.about-modern-section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #00bfff;
+  letter-spacing: 1px;
+}
+
+.section-line {
+  width: 60px;
+  height: 4px;
+  background-color: #00bfff;
+  margin: 0 auto;
+  border: none;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1.8rem;
+  margin-top: 15px;
+  color: #ccc;
+}
+
+.about-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 50% / 30%;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5) !important;
+  filter: brightness(1.05);
+  cursor: pointer;
+}
+
+.about-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px 10px rgba(0, 123, 255, 0.7),
+              0 0 60px 20px rgba(0, 123, 255, 0.4);
+}
+
+.about-text {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  color: #f0f0f0;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+}
+
+#formResponse {
+  color: green;
+  font-weight: bold;
+  display: none;
+}
+
+.contact-btn-style {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.custom-link-btn {
+  border: none;
+  background: transparent;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.custom-link-btn:hover {
+  color: #ffc107;
+}
+
+
+#fun-section p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  margin-top: 0;
+}
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #555;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.form-control::placeholder {
+  color: #bbb;
+}
+.success-message {
+  color: #28a745;
+  margin-top: 1rem;
+  display: none;
+  font-weight: bold;
+}
+.cv-image {
+  max-width: 200px;
+  margin: 1.5rem auto;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* Animation personnalisée pour le contenu des projets */
+.fade-slide {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.fade-slide.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation au survol des cartes */
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+.filter-button {
+  margin: 5px;
+}
+.filter-button.active {
+  background-color: #0d6efd;
+  color: white;
+}
+* {
+  cursor: none !important;
+}
+
+
+/* Curseur personnalisé : cercle gris clair, flou */
+.custom-cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: rgba(200, 200, 200, 0.4);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 6px rgba(200, 200, 200, 0.5);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.1s ease, background-color 0.2s;
+}
+
+/* Lorsque le curseur passe sur un bouton ou un lien */
+.custom-cursor.active {
+  background-color: rgba(160, 160, 160, 0.7);
+  transform: scale(1.4) translate(-50%, -50%);
+}
+
+
