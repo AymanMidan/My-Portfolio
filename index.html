@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark" data-palette="blue">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,276 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome.css" />
   <link rel="stylesheet" href="css/styles.css">
-
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Styles spécifiques pour l'animation hero */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    
+    .hero-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      opacity: 0.6;
+      box-shadow: 0 0 10px var(--accent-color);
+      animation: float 15s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(-20vh) translateX(20vw) scale(1);
+        opacity: 0;
+      }
+    }
+    
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    
+    .hero-welcome {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+    
+    .hero-title {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .hero-title::after {
+      content: '|';
+      position: absolute;
+      right: -15px;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    .hero-subtitle {
+      font-size: 1.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.5s forwards;
+    }
+    
+    .hero-btn {
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s ease 2s forwards, pulse 2s infinite 3s;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .hero-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+    
+    .hero-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero-btn:hover::before {
+      left: 100%;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .social-icons {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      opacity: 0;
+      animation: fadeInUp 1s ease 2.5s forwards;
+    }
+    
+    .social-icon {
+      color: var(--text-primary);
+      font-size: 1.8rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+      text-shadow: 0 0 10px var(--accent-color);
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      opacity: 0;
+      animation-delay: 3s;
+      animation-fill-mode: forwards;
+    }
+    
+    .scroll-indicator i {
+      color: var(--text-primary);
+      font-size: 2rem;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+        opacity: 1;
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+        opacity: 1;
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+        opacity: 1;
+      }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.4rem;
+      }
+    }
+    
+    /* Animation de fond */
+    .animated-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--bg-primary), var(--bg-secondary));
+      background-size: 400% 400%;
+      animation: gradientAnimation 15s ease infinite;
+      z-index: -2;
+    }
+    
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .animated-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, transparent 0%, var(--bg-primary) 70%);
+      z-index: -1;
+    }
+    
+    /* Effet de grille */
+    .grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(var(--card-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--card-border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.1;
+      z-index: -1;
+    }
+  </style>
 </head>
 <body>
-  <div class="animated-background">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
     <div class="container">
@@ -34,75 +300,172 @@
     </div>
   </nav>
 
-  <!-- Header -->
-  <header class="header vh-100 text-center position-relative">
-
-    <div class="text-container position-relative d-flex flex-column justify-content-center align-items-center h-100">
-      <h5 class="text-welcome fs-3 fw-bold text-uppercase">Welcome to my portfolio</h5>
-      <h1 id="typing-text" class="display-1 fw-bold text-white"></h1>
-
-      <p class="roles text-white text-uppercase fs-4">
-        <span>Cybersecurity and AI engineering student | </span>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <!-- Fond animé -->
+    <div class="animated-gradient"></div>
+    <div class="animated-overlay"></div>
+    <div class="grid-overlay"></div>
+    
+    <!-- Particules animées -->
+    <div class="hero-particles" id="particles-container"></div>
+    
+    <!-- Contenu principal -->
+    <div class="hero-content">
+      <h5 class="hero-welcome">WELCOME TO MY PORTFOLIO</h5>
+      <h1 class="hero-title" id="typing-text"></h1>
+      <p class="hero-subtitle">
+        <span>CYBERSECURITY AND AI ENGINEERING STUDENT | </span>
         <span>INPT</span>
       </p>
-      <a href="about.html" class="btn btn-about" >
-        <div class="d-flex">
-          <div class="me-3">
-            <i class="fas fa-chevron-right"></i>
-          </div>
-          <div class="text-start">
-            <span>More About Me</span>
-          </div>
-        </div>
+      <a href="about.html" class="hero-btn">
+        <span>Learn More About Me</span>
+        <i class="fas fa-chevron-right ms-2"></i>
       </a>
-
-      <div class="social d-flex gap-3 position-absolute">
-        <a href="tel:+212675534162">
-          <i class="fas fa-phone fa-3x text-white"></i>
-        </a>
-        <a href="mailto:aymanmidan2005@gmail.com">
-          <i class="fas fa-envelope fa-3x text-white"></i>
-        </a>
-        <a href="linkedin.com/in/ayman-midan-8386b5227">
-          <i class="fab fa-linkedin fa-3x text-white"></i>
-        </a>
-        <a href="https://github.com/AymanMidan?tab=repositories">
-          <i class="fab fa-github fa-3x text-white"></i>
-        </a>
-        <a href="https://www.instagram.com/aymanmidan/">
-          <i class="fab fa-instagram fa-3x text-white"></i>
-        </a>
-      </div>
     </div>
-  </header>
+    
+    <!-- Icônes sociales -->
+    <div class="social-icons">
+      <a href="tel:+212675534162" class="social-icon">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="mailto:aymanmidan2005@gmail.com" class="social-icon">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="linkedin.com/in/ayman-midan-8386b5227" class="social-icon">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/AymanMidan?tab=repositories" class="social-icon">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.instagram.com/aymanmidan/" class="social-icon">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+    
+    <!-- Indicateur de défilement -->
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
 
-  <!-- Typing effect -->
+  <footer class="py-4 text-center">
+    <p class="mb-0">© 2025 Ayman MIDAN — All Rights Reserved</p>
+  </footer>
+
+  <div class="custom-cursor"></div>
+  
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/theme-switcher.js"></script>
+  
   <script>
-    function runTypingEffect() {
+    // Animation de texte tapé
+    document.addEventListener('DOMContentLoaded', function() {
       const text = 'I am Ayman MIDAN';
       const typingElement = document.getElementById('typing-text');
       const typingDelay = 100;
-
-      typeText(text, typingElement, typingDelay);
-    }
-
-    function typeText(text, typingElement, delay) {
-      for (let i = 0; i < text.length; i++) {
-        setTimeout(() => {
-          typingElement.textContent += text.charAt(i);
-        }, delay * i);
+      
+      function typeText() {
+        let charIndex = 0;
+        
+        function type() {
+          if (charIndex < text.length) {
+            typingElement.textContent += text.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+          }
+        }
+        
+        type();
+      }
+      
+      // Démarrer l'animation après un court délai
+      setTimeout(typeText, 500);
+      
+      // Créer les particules
+      createParticles();
+    });
+    
+    // Création des particules animées
+    function createParticles() {
+      const container = document.getElementById('particles-container');
+      const particleCount = 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // Taille aléatoire
+        const size = Math.random() * 8 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Position initiale aléatoire
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100 + 100; // Commencer en dessous de l'écran
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        
+        // Délai et durée aléatoires
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 10 + 10;
+        particle.style.animationDelay = `${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        container.appendChild(particle);
       }
     }
-
-    document.addEventListener('DOMContentLoaded', runTypingEffect);
+    
+    // Easter egg console avancé
+    console.log("%c👋 Salut recruteur !", "font-size: 24px; font-weight: bold; color: #007BFF;");
+    console.log("%cRavi de te voir explorer mon code ! Tu as trouvé un easter egg.", "font-size: 16px; color: #28a745;");
+    console.log("%cSi tu cherches un développeur passionné et attentif aux détails, tu es au bon endroit !", "font-size: 14px; color: #fd7e14;");
+    console.log("%cN'hésite pas à explorer les autres fonctionnalités cachées du site...", "font-size: 14px; color: #8A2BE2;");
+    console.log("%cIndice : essaie de trouver l'intrus dans la page des compétences 😉", "font-size: 14px; font-style: italic; color: #dc3545;");
+    
+    // Petit jeu dans la console
+    console.log("%c🎮 MINI-JEU CONSOLE 🎮", "font-size: 18px; font-weight: bold; color: #007BFF; background-color: #f8f9fa; padding: 5px 10px; border-radius: 5px;");
+    console.log("%cTape la commande suivante pour jouer : startGame()", "font-size: 14px; color: #28a745;");
+    
+    function startGame() {
+      console.log("%cBienvenue dans le jeu du devineur de nombre !", "font-size: 16px; color: #007BFF;");
+      console.log("%cJ'ai choisi un nombre entre 1 et 100. À toi de le deviner !", "font-size: 14px; color: #28a745;");
+      
+      const secretNumber = Math.floor(Math.random() * 100) + 1;
+      let attempts = 0;
+      let found = false;
+      
+      function guess(number) {
+        attempts++;
+        
+        if (isNaN(number)) {
+          console.log("%cCe n'est pas un nombre valide. Essaie encore avec guess(nombre)", "font-size: 14px; color: #dc3545;");
+          return;
+        }
+        
+        if (number < 1 || number > 100) {
+          console.log("%cLe nombre doit être entre 1 et 100. Essaie encore avec guess(nombre)", "font-size: 14px; color: #dc3545;");
+          return;
+        }
+        
+        if (number === secretNumber) {
+          console.log(`%c🎉 BRAVO ! Tu as trouvé le nombre ${secretNumber} en ${attempts} essais !`, "font-size: 16px; font-weight: bold; color: #28a745;");
+          console.log("%cTu as l'œil du recruteur parfait ! 😉", "font-size: 14px; color: #007BFF;");
+          found = true;
+          return;
+        } else if (number < secretNumber) {
+          console.log(`%cTrop petit ! Essaie un nombre plus grand. (Essai ${attempts})`, "font-size: 14px; color: #fd7e14;");
+        } else {
+          console.log(`%cTrop grand ! Essaie un nombre plus petit. (Essai ${attempts})`, "font-size: 14px; color: #fd7e14;");
+        }
+        
+        console.log("%cContinue avec guess(nombre)", "font-size: 14px; color: #6c757d;");
+      }
+      
+      return guess;
+    }
   </script>
-  </div>
-</div>
-<div class="custom-cursor"></div>
-<script src="js/cursor.js"></script>
-<footer style="text-align: center; padding: 20px; font-size: 0.9rem; color: #777;">
-  © 2025 Ayman MIDAN — All Rights Reserved
-</footer>
-
 </body>
 </html>
