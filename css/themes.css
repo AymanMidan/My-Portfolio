@@ -1,0 +1,272 @@
+/* Système de thèmes pour le portfolio
+   Implémentation du dark/light mode et des palettes de couleurs */
+
+:root {
+  /* Variables de base pour le mode sombre (par défaut) */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-card: rgba(30, 30, 30, 0.8);
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --accent-color: #007BFF;
+  --accent-hover: #0056b3;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --navbar-bg: rgba(0, 0, 0, 0.2);
+  --navbar-blur: 10px;
+  --shadow-color: rgba(0, 123, 255, 0.5);
+  --gradient-overlay: radial-gradient(circle at center, var(--accent-color) 0%, transparent 60%);
+  --button-bg: var(--accent-color);
+  --button-text: #ffffff;
+  --card-bg: rgba(30, 30, 30, 0.8);
+  --card-border-hover: var(--accent-color);
+  --animation-speed: 0.3s;
+}
+
+/* Mode clair */
+[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e9e9e9;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --accent-color: #007BFF;
+  --accent-hover: #0056b3;
+  --card-border: rgba(0, 0, 0, 0.1);
+  --navbar-bg: rgba(255, 255, 255, 0.2);
+  --navbar-blur: 10px;
+  --shadow-color: rgba(0, 123, 255, 0.3);
+  --gradient-overlay: radial-gradient(circle at center, var(--accent-color) 0%, transparent 60%);
+  --button-bg: var(--accent-color);
+  --button-text: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border-hover: var(--accent-color);
+}
+
+/* Palette Bleue (par défaut) */
+[data-palette="blue"] {
+  --accent-color: #007BFF;
+  --accent-hover: #0056b3;
+  --shadow-color: rgba(0, 123, 255, 0.5);
+}
+
+/* Palette Violette */
+[data-palette="purple"] {
+  --accent-color: #8A2BE2;
+  --accent-hover: #6A1CB7;
+  --shadow-color: rgba(138, 43, 226, 0.5);
+}
+
+/* Palette Verte */
+[data-palette="green"] {
+  --accent-color: #28a745;
+  --accent-hover: #1e7e34;
+  --shadow-color: rgba(40, 167, 69, 0.5);
+}
+
+/* Palette Orange */
+[data-palette="orange"] {
+  --accent-color: #fd7e14;
+  --accent-hover: #c96a11;
+  --shadow-color: rgba(253, 126, 20, 0.5);
+}
+
+/* Application des variables aux éléments */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--animation-speed), color var(--animation-speed);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--gradient-overlay);
+  animation: moveLight 10s linear infinite;
+  opacity: 0.15;
+  z-index: 0;
+  transition: background var(--animation-speed);
+}
+
+.navbar-blur {
+  background-color: var(--navbar-bg);
+  backdrop-filter: blur(var(--navbar-blur));
+  -webkit-backdrop-filter: blur(var(--navbar-blur));
+  border-bottom: 1px solid var(--card-border);
+  transition: background-color var(--animation-speed);
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-primary);
+  transition: color var(--animation-speed);
+}
+
+.navbar-nav .nav-link::after {
+  background-color: var(--accent-color);
+  transition: width var(--animation-speed), background-color var(--animation-speed);
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--accent-color);
+}
+
+.btn-about {
+  background-color: var(--accent-color);
+  color: var(--button-text);
+  transition: transform var(--animation-speed), box-shadow var(--animation-speed), background-color var(--animation-speed);
+}
+
+.btn-about:hover {
+  background-color: var(--accent-hover);
+  box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.section-title {
+  color: var(--accent-color);
+}
+
+.section-line {
+  background-color: var(--accent-color);
+}
+
+.section-subtitle {
+  color: var(--text-secondary);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  transition: transform var(--animation-speed), border-color var(--animation-speed), box-shadow var(--animation-speed);
+}
+
+.card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.card-title {
+  color: var(--accent-color);
+}
+
+.social a i {
+  color: var(--text-primary);
+  transition: color var(--animation-speed), transform var(--animation-speed), text-shadow var(--animation-speed);
+}
+
+.social a:hover i {
+  color: var(--accent-color);
+  text-shadow: 0 0 8px var(--shadow-color);
+}
+
+/* Contrôles de thème */
+.theme-controls {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background-color: var(--bg-card);
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--card-border);
+  transition: background-color var(--animation-speed), border-color var(--animation-speed);
+}
+
+.theme-toggle {
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: var(--bg-secondary);
+  position: relative;
+  cursor: pointer;
+  transition: background-color var(--animation-speed);
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  top: 3px;
+  left: 3px;
+  transition: transform var(--animation-speed), background-color var(--animation-speed);
+}
+
+.theme-toggle.light::after {
+  transform: translateX(30px);
+}
+
+.palette-options {
+  display: flex;
+  gap: 8px;
+}
+
+.palette-option {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform var(--animation-speed), border-color var(--animation-speed);
+}
+
+.palette-option.active {
+  border-color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.palette-option:hover {
+  transform: scale(1.1);
+}
+
+.palette-blue {
+  background-color: #007BFF;
+}
+
+.palette-purple {
+  background-color: #8A2BE2;
+}
+
+.palette-green {
+  background-color: #28a745;
+}
+
+.palette-orange {
+  background-color: #fd7e14;
+}
+
+/* Animation pour le changement de thème */
+.theme-transition {
+  animation: themeTransition 0.5s ease;
+}
+
+@keyframes themeTransition {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive design pour les contrôles de thème */
+@media (max-width: 768px) {
+  .theme-controls {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+}
