@@ -212,7 +212,6 @@
       }
     }
     
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .project-image-container {
         height: 180px;
@@ -221,28 +220,7 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="images/Logo.png" alt="Logo" width="70" height="70" class="me-2">
-        <span>My Portfolio</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
-          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
-          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
-          <li class="nav-item"><a class="nav-link active" href="projects.html">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="download.html">Download CV</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div id="navbar-placeholder"></div>
 
   <!-- Projects Section -->
   <section id="projects" class="py-5">
@@ -258,8 +236,8 @@
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="science">TIPE</button>
         <button class="filter-btn" data-filter="web">Web Development</button>
-        <button class="filter-btn" data-filter="ai">IA & Cybersecurity</button>
-        <button class="filter-btn" data-filter="game">Game Development</button>
+        <button class="filter-btn" data-filter="ai">ML & AI</button>
+        <button class="filter-btn" data-filter="game">Desktop Development</button>
       </div>
       
       <!-- Projects Grid -->
@@ -268,7 +246,7 @@
         <div class="col-md-6 col-lg-4 project-item science" data-aos="fade-up" data-aos-delay="100">
           <div class="project-card">
             <div class="project-image-container">
-              <img src="images/aerodynamics.png" class="project-image" alt="Aerodynamic Modeling">
+              <img src="images/aerodynamics.png" class="project-image" alt="Aerodynamic Modeling" onerror="this.src='https://via.placeholder.com/400x200?text=Aerodynamics'">
               <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -304,10 +282,10 @@
         </div>
         
         <!-- Project 2 - Streamify -->
-        <div class="col-md-6 col-lg-4 project-item web" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-md-6 col-lg-4 project-item game" data-aos="fade-up" data-aos-delay="200">
           <div class="project-card">
             <div class="project-image-container">
-              <img src="images/streamify.png" class="project-image" alt="Streamify">
+              <img src="images/streamify.png" class="project-image" alt="Streamify" onerror="this.src='https://via.placeholder.com/400x200?text=Streamify'">
               <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -321,14 +299,14 @@
                 <span class="tech-badge">API REST</span>
               </div>
               
-          <div class="project-challenges">
-            <h4 class="challenges-title">Challenges Overcome:</h4>
-            <ul class="challenges-list">
-              <li>Creating an intuitive and responsive user interface</li>
-              <li>Integrating a personalized recommendation system</li>
-              <li>Optimizing performance for video streaming</li>
-            </ul>
-          </div>
+              <div class="project-challenges">
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Creating an intuitive and responsive user interface</li>
+                  <li>Integrating a personalized recommendation system</li>
+                  <li>Optimizing performance for video streaming</li>
+                </ul>
+              </div>
               
               <div class="project-links">
                 <a href="https://github.com/AymanMidan/streamify" class="project-link-btn github-btn">
@@ -346,7 +324,7 @@
         <div class="col-md-6 col-lg-4 project-item web" data-aos="fade-up" data-aos-delay="300">
           <div class="project-card">
             <div class="project-image-container">
-              <img src="images/myportfolio.png" class="project-image" alt="MyPortfolio">
+              <img src="images/myportfolio.png" class="project-image" alt="MyPortfolio" onerror="this.src='https://via.placeholder.com/400x200?text=Portfolio'">
               <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -373,7 +351,7 @@
                 <a href="https://github.com/AymanMidan/My-Portfolio" class="project-link-btn github-btn">
                   <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://my-portfolio-git-main-frenky-de-jongs-projects.vercel.app/" class="project-link-btn demo-btn">
+                <a href="https://my-portfolio-jo2af45mf-frenky-de-jongs-projects.vercel.app/" class="project-link-btn demo-btn">
                   <i class="fas fa-external-link-alt"></i> Demo
                 </a>
               </div>
@@ -385,11 +363,11 @@
         <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="400">
           <div class="project-card">
             <div class="project-image-container">
-              <img src="images/ransomewares.png" class="project-image" alt="Ransomware Detection">
+              <img src="images/ransomewares.png" class="project-image" alt="Ransomware Detection" onerror="this.src='https://via.placeholder.com/400x200?text=Ransomware+Detection'">
               <div class="project-overlay"></div>
             </div>
             <div class="project-content">
-              <h3 class="project-title">Ransomewares detection</h3>
+              <h3 class="project-title">Ransomeware Detection</h3>
               <p class="project-description">Cybersecurity System for Ransomware Detection using Data Augmentation with GANs and VAEs.</p>
               
               <div class="tech-stack">
@@ -401,13 +379,13 @@
               </div>
               
               <div class="project-challenges">
-    <h4 class="challenges-title">Challenges Overcome:</h4>
-    <ul class="challenges-list">
-        <li>Creating effective deep learning models</li>
-        <li>Generating synthetic data for training</li>
-        <li>Real-time detection with a low false positive rate</li>
-    </ul>
-</div>
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Creating effective deep learning models</li>
+                  <li>Generating synthetic data for training</li>
+                  <li>Real-time detection with a low false positive rate</li>
+                </ul>
+              </div>
               
               <div class="project-links">
                 <a href="https://github.com/AymanMidan/Ransomewares_Detection" class="project-link-btn github-btn">
@@ -425,7 +403,7 @@
         <div class="col-md-6 col-lg-4 project-item web" data-aos="fade-up" data-aos-delay="500">
           <div class="project-card">
             <div class="project-image-container">
-              <img src="images/learnball.png" class="project-image" alt="LearnBall">
+              <img src="images/learnball.png" class="project-image" alt="LearnBall" onerror="this.src='https://via.placeholder.com/400x200?text=LearnBall'">
               <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -438,7 +416,6 @@
                 <span class="tech-badge">JavaScript</span>
                 <span class="tech-badge">Flask</span>
                 <span class="tech-badge">MySQL</span>
-                <span class="tech-badge">MongoDB</span>
               </div>
               
               <div class="project-challenges">
@@ -454,13 +431,120 @@
                 <a href="https://github.com/AymanMidan/LearnBall" class="project-link-btn github-btn">
                   <i class="fab fa-github"></i> GitHub
                 </a>
-                <a href="https://drive.google.com/file/d/1dcnlMRaRWhKFCFHBFzOpmZmJGk8juZSF/view?usp=drive_link" class="project-link-btn demo-btn">
+                <a href="#" class="project-link-btn demo-btn">
                   <i class="fas fa-external-link-alt"></i> Demo
                 </a>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Project 6 - Cyber-Escape-Room (NEW) -->
+        <div class="col-md-6 col-lg-4 project-item ai game" data-aos="fade-up" data-aos-delay="600">
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/cyber-escape.png" class="project-image" alt="Cyber-Escape-Room" onerror="this.src='https://via.placeholder.com/400x200?text=Cyber-Escape-Room'">
+              <div class="project-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Cyber-Escape-Room</h3>
+              <p class="project-description">An offline AI-driven educational platform generating dynamic cybersecurity training scenarios, powered by GPT-OSS models.</p>
+              
+              <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">GPT-OSS</span>
+                <span class="tech-badge">LLM</span>
+                <span class="tech-badge">Cybersecurity</span>
+              </div>
+              
+              <div class="project-challenges">
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Running large language models efficiently in an offline environment</li>
+                  <li>Generating coherent and realistic cyber-attack scenarios dynamically</li>
+                </ul>
+              </div>
+              
+              <div class="project-links">
+                <a href="#" class="project-link-btn github-btn">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 7 - Federated Unlearning (NEW) -->
+        <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="700">
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/federated.png" class="project-image" alt="Federated Unlearning" onerror="this.src='https://via.placeholder.com/400x200?text=Federated+Unlearning'">
+              <div class="project-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Federated Unlearning for IoT Networks</h3>
+              <p class="project-description">Implementation of distributed algorithmic techniques to enable secure data forgetting in decentralized IoT networks, preserving privacy.</p>
+              
+              <div class="tech-stack">
+                <span class="tech-badge">PyTorch</span>
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Federated UnLearning</span>
+                <span class="tech-badge">Networking</span>
+              </div>
+              
+              <div class="project-challenges">
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Ensuring model utility after unlearning target data points</li>
+                  <li>Optimizing communication overhead between IoT nodes</li>
+                </ul>
+              </div>
+              
+              <div class="project-links">
+                <a href="#" class="project-link-btn github-btn">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 8 - RAG-System (NEW) -->
+        <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="800">
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/rag.png" class="project-image" alt="RAG System" onerror="this.src='https://via.placeholder.com/400x200?text=RAG+System'">
+              <div class="project-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">RAG-System Integration</h3>
+              <p class="project-description">A robust system leveraging Retrieval-Augmented Generation to anchor LLM responses in specific, trusted document databases.</p>
+              
+              <div class="tech-stack">
+                <span class="tech-badge">LangChain</span>
+                <span class="tech-badge">Vector DB</span>
+                <span class="tech-badge">Ollama</span>
+                <span class="tech-badge">LLMs</span>
+                <span class="tech-badge">Python</span>
+              </div>
+              
+              <div class="project-challenges">
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Optimizing vector search queries for high accuracy and speed</li>
+                  <li>Reducing AI hallucinations by enforcing strict knowledge retrieval</li>
+                </ul>
+              </div>
+              
+              <div class="project-links">
+                <a href="#" class="project-link-btn github-btn">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -548,5 +632,7 @@
       updateRgbVariables();
     });
   </script>
+
+  <script src="js/navbar.js"></script>
 </body>
 </html>
