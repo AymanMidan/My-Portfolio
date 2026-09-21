@@ -439,7 +439,7 @@
           </div>
         </div>
 
-        <!-- Project 6 - Cyber-Escape-Room (NEW) -->
+        <!-- Project 6 - Cyber-Escape-Room -->
         <div class="col-md-6 col-lg-4 project-item ai game" data-aos="fade-up" data-aos-delay="600">
           <div class="project-card">
             <div class="project-image-container">
@@ -474,7 +474,7 @@
           </div>
         </div>
 
-        <!-- Project 7 - Federated Unlearning (NEW) -->
+        <!-- Project 7 - Federated Unlearning -->
         <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="700">
           <div class="project-card">
             <div class="project-image-container">
@@ -509,7 +509,7 @@
           </div>
         </div>
 
-        <!-- Project 8 - RAG-System (NEW) -->
+        <!-- Project 8 - RAG-System -->
         <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="800">
           <div class="project-card">
             <div class="project-image-container">
@@ -545,12 +545,47 @@
           </div>
         </div>
 
+        <!-- Project 9 - Robust Aerial Object Detection (NEW) -->
+        <div class="col-md-6 col-lg-4 project-item ai" data-aos="fade-up" data-aos-delay="900">
+          <div class="project-card">
+            <div class="project-image-container">
+              <img src="images/drone.png" class="project-image" alt="Robust Aerial Object Detection for Drones" onerror="this.src='https://via.placeholder.com/400x200?text=Robust+Detection'">
+              <div class="project-overlay"></div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Robust Aerial Object Detection for Drones</h3>
+              <p class="project-description">Evaluating the robustness of object detection models (YOLOv8n) under environmental corruptions on the AOD-4 dataset for eVTOL vision.</p>
+              
+              <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">YOLOv8</span>
+                <span class="tech-badge">Computer Vision</span>
+                <span class="tech-badge">Deep Learning</span>
+              </div>
+              
+              <div class="project-challenges">
+                <h4 class="challenges-title">Challenges Overcome:</h4>
+                <ul class="challenges-list">
+                  <li>Benchmarking model reliability under synthetic weather conditions</li>
+                  <li>Ensuring safety-critical computer vision for aerial vehicles</li>
+                </ul>
+              </div>
+              
+              <div class="project-links">
+                <a href="https://github.com/AymanMidan/Robust-Aerial-Object-Detection-for-eVTOL" class="project-link-btn github-btn">
+                  <i class="fab fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <footer class="py-4 text-center">
-    <p class="mb-0">© 2025 Ayman MIDAN — All Rights Reserved</p>
+    <p class="mb-0">© 2026 Ayman MIDAN — All Rights Reserved</p>
   </footer>
 
   <div class="custom-cursor"></div>
@@ -616,7 +651,7 @@
           const b = parseInt(accentColor.slice(5, 7), 16);
           rgb = `${r}, ${g}, ${b}`;
         } else if (accentColor.startsWith('rgb')) {
-          rgb = accentColor.replace(/^rgb\(|\)$/g, '').trim();
+          rgb = accentColor.replace(/^rgb\(\vert{}\)$/g, '').trim();
         } else {
           rgb = '0, 123, 255'; // Valeur par défaut
         }
